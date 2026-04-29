@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Escudo Urbano PRO</title>
+<link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+<style>
+body{margin:0;font-family:Arial;background:#020617;color:white}
+nav{display:flex;justify-content:space-between;padding:15px 40px;background:#020617}
+nav a{color:white;margin:0 10px;text-decoration:none}
+header{background:linear-gradient(rgba(0,0,0,.8),rgba(0,0,0,.8)),url('https://images.unsplash.com/photo-1508057198894-247b23fe5ade');background-size:cover;padding:80px 40px}
+.hero{display:flex;justify-content:space-between;align-items:center;gap:40px}
+.hero h1{font-size:42px}
+.hero span{color:#facc15}
+.btn{padding:12px 20px;border:none;border-radius:8px;margin-right:10px;cursor:pointer}
+.btn-yellow{background:#facc15}
+.btn-dark{background:#1e293b;color:white}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;padding:40px}
+.card{background:#0f172a;padding:20px;border-radius:10px}
+.alerts{background:#7f1d1d;padding:20px;border-radius:10px}
+.alert{background:#991b1b;padding:10px;border-radius:8px;margin-bottom:10px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:20px;padding:40px}
+.stat{background:#0f172a;padding:20px;border-radius:10px;text-align:center}
+.map{padding:40px}
+iframe{width:100%;height:400px;border-radius:10px}
+footer{text-align:center;padding:20px;background:#020617}
+
+/* BOTÓN FLOTANTE */
+.emergency{
+ position:fixed;
+ bottom:20px;
+ right:20px;
+ background:#dc2626;
+ color:white;
+ padding:15px 20px;
+ border-radius:50px;
+ font-weight:bold;
+ cursor:pointer;
+ box-shadow:0 0 15px rgba(255,0,0,0.7);
+ animation:pulse 1.5s infinite;
+}
+
+@keyframes pulse{
+ 0%{transform:scale(1)}
+ 50%{transform:scale(1.1)}
+ 100%{transform:scale(1)}
+}
+
+.location-box{
+ padding:20px;
+ text-align:center;
+}
+
+</style>
+</head>
+<body>
+
+<nav>
+<h2>🛡️ Escudo Urbano</h2>
+<div>
+<a href="#">Inicio</a>
+<a href="#">Mapa</a>
+<a href="#">Contacto</a>
+</div>
+</nav>
+
+<header>
+<div class="hero">
+<div>
+<h1>INFORMACIÓN <br><span>QUE TE PROTEGE</span></h1>
+<p>Conocimiento que te ayuda a prevenir el crimen.</p>
+<button class="btn btn-yellow">Infórmate</button>
+<button class="btn btn-dark">Protégete</button>
+</div>
+<img src="https://images.unsplash.com/photo-1605902711622-cfb43c4437d1" width="300">
+</div>
+</header>
+
+<section class="alerts">
+<h2>🚨 Alertas importantes</h2>
+<div class="alert">Extorsiones en aumento: llama 1818.</div>
+<div class="alert">Falsos delivery detectados.</div>
+</section>
+
+<section class="stats">
+<div class="stat"><h3>2541</h3><p>Extorsiones</p></div>
+<div class="stat"><h3>1873</h3><p>Robos</p></div>
+<div class="stat"><h3>458</h3><p>Homicidios</p></div>
+</section>
+
+<section class="location-box">
+<h2>📍 Tu ubicación</h2>
+<p id="ubicacion">Detectando...</p>
+</section>
+
+<section class="map">
+<h2>Mapa de zonas peligrosas</h2>
+<iframe src="https://www.gob.pe/institucion/mininter/tema/mapa-del-delito"></iframe>
+</section>
+
+<footer>
+<p>© 2026 Escudo Urbano PRO</p>
+</footer>
+
+<!-- BOTÓN EMERGENCIA -->
+<div class="emergency" onclick="alert('Llama al 105 o 1818')">🚨 EMERGENCIA</div>
+
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script>
+AOS.init();
+
+// UBICACIÓN
+if(navigator.geolocation){
+ navigator.geolocation.getCurrentPosition(function(pos){
+  document.getElementById('ubicacion').innerText = 
+   'Lat: ' + pos.coords.latitude + ' | Lon: ' + pos.coords.longitude;
+ });
+}else{
+ document.getElementById('ubicacion').innerText = 'No disponible';
+}
+</script>
+
+<
